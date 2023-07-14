@@ -7,7 +7,8 @@ export default {
     return {
       arrProjects: [],
       currentPage: 1,
-      nPage: 0,
+      nPages: 0,
+      // activePage: 1,
     };
   },
   methods: {
@@ -15,9 +16,25 @@ export default {
       this.currentPage = page;
       this.getProjects();
     },
+    nextPage() {
+      this.currentPage++;
+      this.getProjects();
+      if (this.currentPage > 2) {
+        this.currentPage = 1;
+        this.getProjects();
+      }
+    },
+    previousPage() {
+      this.currentPage--;
+      this.getProjects();
+      if (this.currentPage < 1) {
+        this.currentPage = 2;
+        this.getProjects();
+      }
+    },
     getProjects() {
       axios
-        .get("http://localhost:8000/api/Projects", {
+        .get("http://localhost:8000/api/projects", {
           params: {
             page: this.currentPage,
           },
@@ -57,8 +74,8 @@ export default {
 
     <nav>
       <ul class="pagination">
-        <li class="page-item disabled">
-          <a class="page-link">Previous</a>
+        <li class="page-item">
+          <a class="page-link" href="#" @click="previousPage()">Previous</a>
         </li>
 
         <li
@@ -73,7 +90,7 @@ export default {
         </li>
 
         <li class="page-item">
-          <a class="page-link" href="#">Next</a>
+          <a class="page-link" href="#" @click="nextPage()">Next</a>
         </li>
       </ul>
     </nav>
