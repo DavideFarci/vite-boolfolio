@@ -8,7 +8,9 @@ export default {
     };
   },
   created() {
-    axios.get("").then(response);
+    axios
+      .get("http://localhost:8000/api/projects")
+      .then((response) => (this.arrProjects = response.data.data));
   },
 };
 </script>
