@@ -10,7 +10,7 @@ export default {
   created() {
     axios
       .get("http://localhost:8000/api/projects")
-      .then((response) => (this.arrProjects = response.data.data));
+      .then((response) => (this.arrProjects = response.data));
   },
 };
 </script>
@@ -18,7 +18,9 @@ export default {
 <template>
   <h1 class="text-danger">boolpress</h1>
   <ul>
-    <li v-for="project in arrProjects" :key="post.id">{{ project.title }}</li>
+    <li v-for="project in arrProjects" :key="project.id">
+      {{ project.title }}
+    </li>
   </ul>
 </template>
 
