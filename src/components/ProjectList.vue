@@ -6,6 +6,8 @@ export default {
   data() {
     return {
       arrProjects: [],
+      currentPage: 1,
+      nPage: 0,
     };
   },
   methods: {

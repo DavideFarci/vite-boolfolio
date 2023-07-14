@@ -10,7 +10,11 @@ export default {
   <div class="col">
     <div class="content">
       <div class="card_project col-3">
-        <img :src="dataCard.image" :alt="dataCard.image" />
+        <img
+          style="width: 300px"
+          :src="'http://localhost:8000/storage/' + dataCard.image"
+          :alt="dataCard.image"
+        />
         <div class="title">{{ dataCard.title }}</div>
         <div class="author">{{ dataCard.author }}</div>
         <div class="creation_date">{{ dataCard.creation_date }}</div>
