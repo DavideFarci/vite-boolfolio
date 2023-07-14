@@ -11,17 +11,17 @@ export default {
   methods: {
     changePage(page) {
       this.currentPage = page;
-      this.getPosts();
+      this.getProjects();
     },
-    getPosts() {
+    getProjects() {
       axios
-        .get("http://localhost:8000/api/posts", {
+        .get("http://localhost:8000/api/Projects", {
           params: {
             page: this.currentPage,
           },
         })
         .then((response) => {
-          this.arrPosts = response.data.data;
+          this.arrProjects = response.data.data;
           this.nPages = response.data.last_page;
         });
     },
