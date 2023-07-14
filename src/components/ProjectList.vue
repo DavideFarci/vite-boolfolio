@@ -1,6 +1,7 @@
 <script>
 import axios from "axios";
 
+import CardProject from "./CardProject.vue";
 export default {
   data() {
     return {
@@ -37,38 +38,44 @@ export default {
         this.nPages = response.data.last_page;
       });
   },
+  components: { CardProject },
 };
 </script>
 
 <template>
-  <h1 class="text-danger">Boolpress</h1>
-  <ul>
-    <li v-for="project in arrProjects" :key="project.id">
-      {{ project.title }}
-    </li>
-  </ul>
-  <nav>
-    <ul class="pagination">
-      <li class="page-item disabled">
-        <a class="page-link">Previous</a>
-      </li>
+  <div class="container">
+    <h1 class="text-danger">Boolpress</h1>
+    <div class="row row-cols-3">
+      <CardProject
+        v-for="project in arrProjects"
+        :key="project.id"
+        :dataCard="project"
+      />
+    </div>
 
-      <li
-        v-for="page in nPages"
-        :key="page"
-        class="page-item"
-        :class="{ active: page == currentPage }"
-      >
-        <span class="page-link" @click="changePage(page)">
-          {{ page }}
-        </span>
-      </li>
+    <nav>
+      <ul class="pagination">
+        <li class="page-item disabled">
+          <a class="page-link">Previous</a>
+        </li>
 
-      <li class="page-item">
-        <a class="page-link" href="#">Next</a>
-      </li>
-    </ul>
-  </nav>
+        <li
+          v-for="page in nPages"
+          :key="page"
+          class="page-item"
+          :class="{ active: page == currentPage }"
+        >
+          <span class="page-link" @click="changePage(page)">
+            {{ page }}
+          </span>
+        </li>
+
+        <li class="page-item">
+          <a class="page-link" href="#">Next</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
 </template>
 
 <style lang="scss" scoped></style>
