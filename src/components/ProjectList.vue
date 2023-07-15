@@ -20,9 +20,10 @@ export default {
     nextPage() {
       this.currentPage++;
       this.getProjects();
-      if (this.currentPage >= 2) {
+      if (this.currentPage >= this.nPages) {
         this.lastPage = true;
       }
+      this.firstPage = false;
     },
     previousPage() {
       this.currentPage--;
@@ -30,6 +31,7 @@ export default {
       if (this.currentPage <= 1) {
         this.firstPage = true;
       }
+      this.lastPage = false;
     },
     getProjects() {
       axios
@@ -55,9 +57,6 @@ export default {
         this.arrProjects = response.data.data;
         this.nPages = response.data.last_page;
       });
-  },
-  mounted() {
-    console.log(this.nPages);
   },
   components: { CardProject },
 };
