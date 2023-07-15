@@ -78,13 +78,13 @@ export default {
     <nav>
       <ul class="pagination">
         <li class="page-item">
-          <a
+          <button
             class="page-link"
             :class="{ disabled: firstPage }"
-            href="#"
             @click="previousPage()"
-            >Previous</a
           >
+            Previous
+          </button>
         </li>
 
         <li
@@ -99,13 +99,13 @@ export default {
         </li>
 
         <li class="page-item">
-          <a
+          <button
             class="page-link"
             :class="{ disabled: lastPage }"
-            href="#"
             @click="nextPage()"
-            >Next</a
           >
+            Next
+          </button>
         </li>
       </ul>
     </nav>
