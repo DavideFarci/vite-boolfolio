@@ -16,6 +16,8 @@ export default {
     changePage(page) {
       this.currentPage = page;
       this.getProjects();
+      this.firstPage = !this.firstPage;
+      this.lastPage = !this.lastPage;
     },
     nextPage() {
       this.currentPage++;
@@ -88,7 +90,7 @@ export default {
         <li
           v-for="page in nPages"
           :key="page"
-          class="page-item"
+          class="page-item num_pages"
           :class="{ active: page == currentPage }"
         >
           <span class="page-link" @click="changePage(page)">
@@ -110,4 +112,8 @@ export default {
   </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.num_pages {
+  cursor: pointer;
+}
+</style>
