@@ -8,7 +8,8 @@ export default {
       arrProjects: [],
       currentPage: 1,
       nPages: 0,
-      // activePage: 1,
+      firstPage: false,
+      lastPage: false,
     };
   },
   methods: {
@@ -19,17 +20,15 @@ export default {
     nextPage() {
       this.currentPage++;
       this.getProjects();
-      if (this.currentPage > 2) {
-        this.currentPage = 1;
-        this.getProjects();
+      if (this.currentPage >= 2) {
+        this.lastPage = true;
       }
     },
     previousPage() {
       this.currentPage--;
       this.getProjects();
-      if (this.currentPage < 1) {
-        this.currentPage = 2;
-        this.getProjects();
+      if (this.currentPage <= 1) {
+        this.firstPage = true;
       }
     },
     getProjects() {
@@ -57,6 +56,9 @@ export default {
         this.nPages = response.data.last_page;
       });
   },
+  mounted() {
+    console.log(this.nPages);
+  },
   components: { CardProject },
 };
 </script>
@@ -75,7 +77,13 @@ export default {
     <nav>
       <ul class="pagination">
         <li class="page-item">
-          <a class="page-link" href="#" @click="previousPage()">Previous</a>
+          <a
+            class="page-link"
+            :class="{ disabled: firstPage }"
+            href="#"
+            @click="previousPage()"
+            >Previous</a
+          >
         </li>
 
         <li
@@ -90,7 +98,13 @@ export default {
         </li>
 
         <li class="page-item">
-          <a class="page-link" href="#" @click="nextPage()">Next</a>
+          <a
+            class="page-link"
+            :class="{ disabled: lastPage }"
+            href="#"
+            @click="nextPage()"
+            >Next</a
+          >
         </li>
       </ul>
     </nav>
