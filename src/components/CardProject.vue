@@ -3,6 +3,13 @@ export default {
   props: {
     dataCard: Object,
   },
+  methods: {
+    formatDate(date) {
+      const parts = date.split("-");
+      const formattedDate = `${parts[2]}-${parts[1]}-${parts[0]}`;
+      return formattedDate;
+    },
+  },
 };
 </script>
 
@@ -17,8 +24,10 @@ export default {
         />
         <div class="title">{{ dataCard.title }}</div>
         <div class="author">{{ dataCard.author }}</div>
-        <div class="creation_date">{{ dataCard.creation_date }}</div>
-        <div class="last_update">{{ dataCard.last_update }}</div>
+        <div class="creation_date">
+          {{ formatDate(dataCard.creation_date) }}
+        </div>
+        <div class="last_update">{{ formatDate(dataCard.last_update) }}</div>
         <div v-if="dataCard.collaborators" class="collaborators">
           {{ dataCard.collaborators }}
         </div>
