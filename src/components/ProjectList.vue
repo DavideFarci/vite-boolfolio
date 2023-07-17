@@ -15,13 +15,13 @@ export default {
   methods: {
     changePage(page) {
       this.currentPage = page;
-      this.getProjects();
+      // this.getProjects();
       this.firstPage = !this.firstPage;
       this.lastPage = !this.lastPage;
     },
     nextPage() {
       this.currentPage++;
-      this.getProjects();
+      // this.getProjects();
       if (this.currentPage >= this.nPages) {
         this.lastPage = true;
       }
@@ -29,7 +29,7 @@ export default {
     },
     previousPage() {
       this.currentPage--;
-      this.getProjects();
+      // this.getProjects();
       if (this.currentPage <= 1) {
         this.firstPage = true;
       }
@@ -59,6 +59,11 @@ export default {
         this.arrProjects = response.data.data;
         this.nPages = response.data.last_page;
       });
+  },
+  watch: {
+    currentPage() {
+      this.getProjects();
+    },
   },
   components: { CardProject },
 };
