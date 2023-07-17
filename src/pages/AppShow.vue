@@ -6,20 +6,21 @@ export default {
   data() {
     return {
       store,
+      singleProject: {},
     };
   },
   created() {
-    // richiesta axios per i dati del post
-    // esempio: http://localhost:8000/api/posts/iusto-hic-libero-culpa-sit-similique
+    // fai la richiesta axios
     axios
       .get(this.store.baseUrl + "api/projects/" + this.$route.params.slug)
-      .then((response) => console.log(response));
+      .then((response) => (this.singleProject = response.data));
+    console.log(this.singleProject);
   },
 };
 </script>
 
 <template>
-  <h2>Sono la show</h2>
+  <h2>{{ singleProject.title }}</h2>
 </template>
 
 <style></style>
