@@ -13,12 +13,12 @@ export default {
     };
   },
   methods: {
-    changePage(page) {
-      this.currentPage = page;
-      // this.getProjects();
-      this.firstPage = !this.firstPage;
-      this.lastPage = !this.lastPage;
-    },
+    // changePage(page) {
+    //   this.currentPage = page;
+    //   // this.getProjects();
+    //   this.firstPage = !this.firstPage;
+    //   this.lastPage = !this.lastPage;
+    // },
     nextPage() {
       this.currentPage++;
       // this.getProjects();
@@ -71,7 +71,6 @@ export default {
 
 <template>
   <div class="container">
-    <h1 class="text-danger">Boolpress</h1>
     <div class="row row-cols-3">
       <CardProject
         v-for="project in arrProjects"
