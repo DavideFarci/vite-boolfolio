@@ -1,5 +1,11 @@
 <script>
+import { store } from "../store";
 export default {
+  data() {
+    return {
+      store,
+    };
+  },
   props: {
     dataCard: Object,
   },
@@ -19,7 +25,7 @@ export default {
       <div class="card_project col-3">
         <img
           style="width: 300px"
-          :src="'http://localhost:8000/storage/' + dataCard.image"
+          :src="this.store.baseUrl + 'storage/' + dataCard.image"
           :alt="dataCard.image"
         />
         <div class="title">{{ dataCard.title }}</div>
@@ -41,6 +47,10 @@ export default {
             {{ languages.name }},
           </span>
         </div>
+        <router-link
+          :to="{ name: 'projects.show', params: { slug: dataCard.slug } }"
+          >View</router-link
+        >
       </div>
     </div>
   </div>
