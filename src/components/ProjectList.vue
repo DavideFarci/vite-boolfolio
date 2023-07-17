@@ -49,16 +49,17 @@ export default {
     },
   },
   created() {
-    axios
-      .get("http://localhost:8000/api/projects", {
-        params: {
-          page: this.nPage,
-        },
-      })
-      .then((response) => {
-        this.arrProjects = response.data.data;
-        this.nPages = response.data.last_page;
-      });
+    // axios
+    //   .get("http://localhost:8000/api/projects", {
+    //     params: {
+    //       page: this.nPage,
+    //     },
+    //   })
+    //   .then((response) => {
+    //     this.arrProjects = response.data.data;
+    //     this.nPages = response.data.last_page;
+    //   });
+    this.getProjects();
   },
   watch: {
     currentPage() {
