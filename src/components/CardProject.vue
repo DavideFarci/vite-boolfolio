@@ -23,10 +23,11 @@ export default {
   <div class="col">
     <div class="content">
       <div class="card_project col-3">
+        <!-- controllo se l'immagine esiste -->
         <img
           style="width: 300px"
           :src="this.store.baseUrl + 'storage/' + dataCard.image"
-          :alt="dataCard.image"
+          :alt="dataCard.title"
         />
         <div class="title">{{ dataCard.title }}</div>
         <div class="author">{{ dataCard.author }}</div>

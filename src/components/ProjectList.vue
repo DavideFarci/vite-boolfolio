@@ -11,6 +11,7 @@ export default {
       nPages: 0,
       firstPage: false,
       lastPage: false,
+      loader: true,
     };
   },
   methods: {
@@ -42,6 +43,7 @@ export default {
       });
     },
     getProjects() {
+      this.loader = true;
       axios
         .get("http://localhost:8000/api/projects", {
           params: {
@@ -53,6 +55,7 @@ export default {
         .then((response) => {
           this.arrProjects = response.data.results.data;
           this.nPages = response.data.results.last_page;
+          this.loader = false;
         });
     },
   },
@@ -79,13 +82,17 @@ export default {
         </option>
       </select>
     </form>
-
-    <div class="row row-cols-3 my-5">
+    {{ loader }}
+    <div v-if="!loader" class="row row-cols-3 my-5">
       <CardProject
         v-for="project in arrProjects"
         :key="project.id"
         :dataCard="project"
       />
+    </div>
+    <div v-else>
+      caricamento
+      <!-- caricamento in corso  -->
     </div>
 
     <nav>
