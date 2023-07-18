@@ -16,7 +16,6 @@ export default {
 
 <template>
   <AppNav />
-  <h1 class="text-danger">Boolpress</h1>
   <router-view></router-view>
   <AppFooter />
 </template>
