@@ -72,7 +72,7 @@ export default {
 
 <template>
   <div class="container">
-    <div class="row row-cols-3">
+    <div class="row row-cols-3 my-5">
       <CardProject
         v-for="project in arrProjects"
         :key="project.id"
