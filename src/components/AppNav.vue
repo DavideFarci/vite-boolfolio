@@ -1,5 +1,15 @@
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      searchStr: "",
+    };
+  },
+  //TODO pulire il campo di ricerca
+  // updated() {
+  //   this.searchStr = new URLSearchParams(window.location.search).get('q');
+  // }
+};
 </script>
 
 <template>
@@ -24,12 +34,23 @@ export default {};
               >
             </li>
             <li>
-              <form class="d-flex" role="search">
+              <form
+                class="d-flex"
+                role="search"
+                @submit.prevent="
+                  $router.push({
+                    name: 'projects.index',
+                    query: { q: searchStr },
+                  })
+                "
+              >
                 <input
                   class="form-control me-2"
                   type="search"
                   placeholder="Search"
                   aria-label="Search"
+                  name="q"
+                  v-model="searchStr"
                 />
                 <button class="btn btn-outline-success" type="submit">
                   Search

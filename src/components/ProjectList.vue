@@ -6,6 +6,7 @@ export default {
   data() {
     return {
       arrProjects: [],
+      arrTypes: [],
       currentPage: 1,
       nPages: 0,
       firstPage: false,
@@ -13,12 +14,12 @@ export default {
     };
   },
   methods: {
-    // changePage(page) {
-    //   this.currentPage = page;
-    //   // this.getProjects();
-    //   this.firstPage = !this.firstPage;
-    //   this.lastPage = !this.lastPage;
-    // },
+    changePage(page) {
+      this.currentPage = page;
+      // this.getProjects();
+      this.firstPage = !this.firstPage;
+      this.lastPage = !this.lastPage;
+    },
     nextPage() {
       this.currentPage++;
       // this.getProjects();
@@ -35,11 +36,18 @@ export default {
       }
       this.lastPage = false;
     },
+    getTypes() {
+      axios.get("http://localhost:8000/api/types").then((response) => {
+        this.arrTypes = response.data.results;
+      });
+    },
     getProjects() {
       axios
         .get("http://localhost:8000/api/projects", {
           params: {
             page: this.currentPage,
+            // se sto già in prjects.index non esegue il craeated e non aggiorna la pagina
+            q: new URLSearchParams(window.location.search).get("q"),
           },
         })
         .then((response) => {
@@ -49,16 +57,7 @@ export default {
     },
   },
   created() {
-    // axios
-    //   .get("http://localhost:8000/api/projects", {
-    //     params: {
-    //       page: this.nPage,
-    //     },
-    //   })
-    //   .then((response) => {
-    //     this.arrProjects = response.data.data;
-    //     this.nPages = response.data.last_page;
-    //   });
+    this.getTypes();
     this.getProjects();
   },
   watch: {
@@ -72,6 +71,15 @@ export default {
 
 <template>
   <div class="container">
+    <form>
+      <label class="mb-2" for="type">Type</label>
+      <select class="form-select w-25" id="type">
+        <option v-for="type in arrTypes" :key="type.id" :value="type.id">
+          {{ type.name }}
+        </option>
+      </select>
+    </form>
+
     <div class="row row-cols-3 my-5">
       <CardProject
         v-for="project in arrProjects"
