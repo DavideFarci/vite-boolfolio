@@ -43,8 +43,8 @@ export default {
           },
         })
         .then((response) => {
-          this.arrProjects = response.data.data;
-          this.nPages = response.data.last_page;
+          this.arrProjects = response.data.results.data;
+          this.nPages = response.data.results.last_page;
         });
     },
   },

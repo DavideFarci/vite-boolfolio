@@ -13,7 +13,7 @@ export default {
     // fai la richiesta axios
     axios
       .get(this.store.baseUrl + "api/projects/" + this.$route.params.slug)
-      .then((response) => (this.singleProject = response.data));
+      .then((response) => (this.singleProject = response.data.results));
     console.log(this.singleProject);
   },
 };
