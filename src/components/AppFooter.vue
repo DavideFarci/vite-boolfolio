@@ -3,7 +3,7 @@ export default {};
 </script>
 
 <template>
-  <footer class="py-5 bg-dark text-light fixed-bottom">Sono il footer</footer>
+  <footer class="py-5 bg-dark text-light">Sono il footer</footer>
 </template>
 
 <style></style>
