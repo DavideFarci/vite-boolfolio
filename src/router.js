@@ -5,6 +5,7 @@ import AppProjects from "./pages/AppProjects.vue";
 import AppShow from "./pages/AppShow.vue";
 import AppAbout from "./pages/AppAbout.vue";
 import App404 from "./pages/App404.vue";
+import AppContact from "./pages/AppContact.vue";
 
 const router = createRouter({
   history: createWebHistory(),
@@ -15,9 +16,14 @@ const router = createRouter({
       component: AppHome,
     },
     {
-      path: "/",
+      path: "/about",
       name: "about",
       component: AppAbout,
+    },
+    {
+      path: "/contact",
+      name: "contact",
+      component: AppContact,
     },
     {
       path: "/projects",
